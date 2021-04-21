@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+h1,
+h2 {
+  font-size: 24px;
+  margin: $spacing-xxs 0;
+  font-weight: 300;
+}
+
+input {
+  font-size: 0.8rem;
+  border: none;
+  border-bottom: 1px solid $gray40;
+  padding: $spacing-xxs;
+}
+
+a {
+  cursor: pointer;
+  color: $blue-accent;
+
+  &:hover {
+    color: $blue-dark;
+  }
+
+  h1 {
+    flex: 1;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $blue-accent;
+  color: $white;
+  padding: $spacing-3xs $spacing-xs;
+
+  button {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.header--content {
+  display: flex;
+  height: 10vh;
+  > * {
+    display: flex;
+    align-items: center;
+  }
+}
+
+main {
+  padding: $spacing-xs $spacing-xxs;
+  min-width: 300px;
+  max-width: 1250px;
+  margin: 0 auto;
+}

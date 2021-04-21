@@ -1,0 +1,37 @@
+.empty {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  font-size: 1.5rem;
+  color: $gray40;
+}
+
+form {
+  margin-bottom: $spacing-xs;
+}
+
+.full-width {
+  width: 100%;
+}
+.book {
+  border: 1px solid silver;
+  margin-top: 0.5rem;
+}
+.book--container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.search-params {
+  flex-grow: 1;
+}
+.sidebar {
+  flex-basis: 25%;
+  flex-shrink: 0;
+  margin-left: $spacing-xs;
+  padding-left: $spacing-xs;
+  border-left: 1px solid $gray40;
+}
