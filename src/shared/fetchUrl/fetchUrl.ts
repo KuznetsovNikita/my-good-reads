@@ -1,4 +1,3 @@
-
 /**
  * Fetch call always resolves even with bad requests (except network error)
  * so adding a wrapper over fetch to reject request if response is not ok
@@ -6,9 +5,9 @@
  * @param url
  * @param config
  */
-const fetchUrl = (url: string, config = {}): Promise<any> =>
-    fetch(url, config).then(async response => {
-        const data = await response.json();
-        return response.ok ? data : Promise.reject(data);
-    });
+const fetchUrl = <T>(url: string, config = {}): Promise<T> =>
+  fetch(url, config).then(async (response) => {
+    const data = await response.json();
+    return response.ok ? data : Promise.reject(data);
+  });
 export default fetchUrl;

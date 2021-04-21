@@ -40,6 +40,6 @@ form {
   @include media("min", "mobile") {
     margin-left: $spacing-xs;
     padding-left: $spacing-xs;
-    flex-flow: column nowrap;
+    border-left: 1px solid $gray40;
   }
 }

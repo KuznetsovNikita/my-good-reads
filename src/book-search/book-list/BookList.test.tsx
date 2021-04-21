@@ -54,7 +54,7 @@ describe("Book list component", () => {
   });
 
   it("Book list should fire callback on click add button", () => {
-    var callback = jest.fn();
+    const callback = jest.fn();
     render(<BookList books={[mockMinorBook]} selectBook={callback} />);
 
     fireEvent.click(screen.getByText(/Add to wishlist/i));

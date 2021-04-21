@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/App.scss";
 import BookSearch from "./book-search/BookSearch";
 
-function App() {
+const App = () => {
   return (
     <div>
       <header className="header">
@@ -15,6 +15,6 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;
