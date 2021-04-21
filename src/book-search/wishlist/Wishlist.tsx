@@ -1,5 +1,5 @@
 import React from "react";
-import { Book } from "./model";
+import { Book } from "../model";
 
 export interface WishListPops {
   myBooks: Book[];

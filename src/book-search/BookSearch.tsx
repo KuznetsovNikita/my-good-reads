@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getBooksByType } from "./book-search.service";
 import { Book } from "./model";
 import { debounce } from "debounce";
-import { WishList } from "./Wishlist";
-import { BookList } from "./BookList";
+import { WishList } from "./wishlist/Wishlist";
+import { BookList } from "./book-list/BookList";
 
 const useBooks = (bookTypeToSearch: string) => {
   const [allAvailableBooks, setAllAvailableBooks] = useState<Book[]>([]);

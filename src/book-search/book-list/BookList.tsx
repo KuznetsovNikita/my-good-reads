@@ -1,5 +1,5 @@
 import React from "react";
-import { Book } from "./model";
+import { Book } from "../model";
 
 interface BookListProps {
   books: Book[];
