@@ -11,7 +11,11 @@ export const BookList: React.FC<BookListProps> = ({ books, selectBook }) => {
     <div className="book-list">
       {books.map((book) => {
         return (
-          <div className="book-list-item" key={book.id}>
+          <div
+            className="book-list-item"
+            key={book.id}
+            data-testid="book-result"
+          >
             {book.volumeInfo.imageLinks && (
               <div className="book-thumbnail">
                 <img

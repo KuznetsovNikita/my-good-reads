@@ -9,9 +9,13 @@ const useBooks = (bookTypeToSearch: string) => {
   const [allAvailableBooks, setAllAvailableBooks] = React.useState<Book[]>([]);
 
   React.useEffect(() => {
-    getBooksByType<Book>(bookTypeToSearch).then((allBooks) => {
-      setAllAvailableBooks(allBooks.items);
-    });
+    if (bookTypeToSearch) {
+      getBooksByType<Book>(bookTypeToSearch).then((allBooks) => {
+        setAllAvailableBooks(allBooks.items);
+      });
+    } else {
+      setAllAvailableBooks([]);
+    }
   }, [bookTypeToSearch]);
 
   return allAvailableBooks;
@@ -70,6 +74,7 @@ const BookSearch = () => {
           <div>
             <form onSubmit={onSubmit}>
               <input
+                data-testid="search-input"
                 className="full-width"
                 autoFocus
                 name="gsearch"
