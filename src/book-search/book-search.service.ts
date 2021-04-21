@@ -1,16 +1,21 @@
-import  fetchUrl from './../shared/fetchUrl/fetchUrl';
+import fetchUrl from "./../shared/fetchUrl/fetchUrl";
 
-export async function getBooksByType(type: string) {
-    try {
-        return await fetchUrl(`https://www.googleapis.com/books/v1/volumes?q=${type}`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-            }
-        });
-    } catch(exception) {
-        return [];
-
-    }
+interface Response<A> {
+  items: A[];
 }
 
+export async function getBooksByType<A>(type: string): Promise<Response<A>> {
+  try {
+    return await fetchUrl(
+      `https://www.googleapis.com/books/v1/volumes?q=${type}`,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+  } catch (exception) {
+    return { items: [] };
+  }
+}

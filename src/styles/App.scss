@@ -1,12 +1,12 @@
-@import './variables';
+@import "./variables";
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
 h1,
@@ -61,7 +61,7 @@ a {
 main {
   padding: $spacing-xs $spacing-xxs;
   min-width: 300px;
-  max-width: 100vw;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
@@ -111,20 +111,23 @@ form {
 }
 .book {
   border: 1px solid silver;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 .book--container {
   display: flex;
   flex-flow: row nowrap;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: stretch;
 }
-
 .search-params {
-  flex-grow: 3;
-
+  flex-grow: 1;
 }
 .sidebar {
-  flex-grow: 1;
-
+  flex-basis: 25%;
+  flex-shrink: 0;
+  margin-left: $spacing-xs;
+  padding-left: $spacing-xs;
+  border-left: 1px solid $gray40;
 }
+
+@import "./bookList";
