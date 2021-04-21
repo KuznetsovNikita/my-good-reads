@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { Book } from "../model";
-import { WishList } from "./Wishlist";
+import { Wishlist } from "./Wishlist";
 
 describe("Wishlist component", () => {
   const mockBook: Book = {
@@ -20,13 +20,13 @@ describe("Wishlist component", () => {
   };
 
   it("Render empty Wishlist", () => {
-    const { getByText } = render(<WishList myBooks={[]} />);
+    const { getByText } = render(<Wishlist myBooks={[]} />);
     const titleElement = getByText(/My wishlist \(0\)/im);
     expect(titleElement).toBeInTheDocument();
   });
 
   it("Wishlist should render one book", () => {
-    const { getByText } = render(<WishList myBooks={[mockBook]} />);
+    const { getByText } = render(<Wishlist myBooks={[mockBook]} />);
     const titleElement = getByText(/My wishlist \(1\)/im);
     expect(titleElement).toBeInTheDocument();
 
@@ -36,12 +36,12 @@ describe("Wishlist component", () => {
 
   it("Wishlist should render two books", () => {
     const { getByText, getAllByText } = render(
-      <WishList myBooks={[mockBook, mockBook2]} />
+      <Wishlist myBooks={[mockBook, mockBook2]} />
     );
     const titleElement = getByText(/My wishlist \(2\)/im);
     expect(titleElement).toBeInTheDocument();
 
-    const bookTitleElement = getAllByText(/JavaScript/i);
-    expect(bookTitleElement.length).toBe(2);
+    const bookTitleElements = getAllByText(/JavaScript/i);
+    expect(bookTitleElements.length).toBe(2);
   });
 });

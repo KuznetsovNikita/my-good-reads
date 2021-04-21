@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getBooksByType } from "./book-search.service";
 import { Book } from "./model";
 import { debounce } from "debounce";
-import { WishList } from "./wishlist/Wishlist";
+import { Wishlist } from "./wishlist/Wishlist";
 import { BookList } from "./book-list/BookList";
 
 const useBooks = (bookTypeToSearch: string) => {
-  const [allAvailableBooks, setAllAvailableBooks] = useState<Book[]>([]);
+  const [allAvailableBooks, setAllAvailableBooks] = React.useState<Book[]>([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     getBooksByType<Book>(bookTypeToSearch).then((allBooks) => {
       setAllAvailableBooks(allBooks.items);
     });
@@ -18,9 +18,9 @@ const useBooks = (bookTypeToSearch: string) => {
 };
 
 const BookSearch = () => {
-  const [bookType, updateBookType] = useState("");
-  const [bookTypeToSearch, updateBookTypeToSearch] = useState("");
-  const [myBooks, setMyBooks] = useState<Book[]>([]);
+  const [bookType, updateBookType] = React.useState("");
+  const [bookTypeToSearch, updateBookTypeToSearch] = React.useState("");
+  const [myBooks, setMyBooks] = React.useState<Book[]>([]);
 
   const books = useBooks(bookTypeToSearch);
 
@@ -95,7 +95,7 @@ const BookSearch = () => {
           </div>
         </div>
         <div className="sidebar">
-          <WishList myBooks={myBooks} />
+          <Wishlist myBooks={myBooks} />
         </div>
       </div>
     </>

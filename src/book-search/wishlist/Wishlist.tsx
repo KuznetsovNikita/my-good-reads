@@ -1,11 +1,11 @@
 import React from "react";
 import { Book } from "../model";
 
-export interface WishListPops {
+export interface WishlistPops {
   myBooks: Book[];
 }
 
-export const WishList: React.FC<WishListPops> = React.memo(({ myBooks }) => {
+export const Wishlist: React.FC<WishlistPops> = React.memo(({ myBooks }) => {
   return (
     <div>
       <h4>My wishlist ({myBooks.length})</h4>
