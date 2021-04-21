@@ -24,14 +24,22 @@ form {
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: stretch;
+
+  @include media("max", "mobile") {
+    flex-flow: column nowrap;
+  }
 }
+
 .search-params {
   flex-grow: 1;
 }
 .sidebar {
   flex-basis: 25%;
   flex-shrink: 0;
-  margin-left: $spacing-xs;
-  padding-left: $spacing-xs;
-  border-left: 1px solid $gray40;
+
+  @include media("min", "mobile") {
+    margin-left: $spacing-xs;
+    padding-left: $spacing-xs;
+    flex-flow: column nowrap;
+  }
 }
