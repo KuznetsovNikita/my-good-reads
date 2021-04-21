@@ -1,5 +1,4 @@
 import fetchUrl from "./fetchUrl";
-import sinon from "sinon";
 
 declare global {
   namespace NodeJS {
@@ -8,6 +7,7 @@ declare global {
     }
   }
 }
+
 describe("Testing FetchUrl - Wrapper over fetch", () => {
   const res = [
     {
@@ -15,41 +15,41 @@ describe("Testing FetchUrl - Wrapper over fetch", () => {
       name: "Abc",
     },
   ];
+
   it("should perform basic fetch functions", () => {
-    const mockFetch = sinon.fake.resolves({
+    jest.spyOn(global, "fetch").mockResolvedValue({
       ok: true,
-      json: () => res,
+      json: jest.fn().mockResolvedValue(res),
     });
-    // Inject mock fetch into global
-    global.fetch = mockFetch;
+
     fetchUrl("/api/v1/someUrl");
-    expect(mockFetch.calledWith("/api/v1/someUrl")).toBeTruthy();
-    expect(mockFetch.calledOnce).toBeTruthy();
-    delete global.fetch;
+    expect(window.fetch).toHaveBeenCalledWith("/api/v1/someUrl", {});
+    expect(window.fetch).toHaveBeenCalledTimes(1);
+
+    jest.restoreAllMocks();
   });
   it("should resolve with data for valid request", async () => {
-    const mockFetch = sinon.fake.resolves({
+    jest.spyOn(global, "fetch").mockResolvedValue({
       ok: true,
-      json: () => res,
+      json: jest.fn().mockResolvedValue(res),
     });
-    // Inject mock fetch into global
-    global.fetch = mockFetch;
+
     const fetchResponse = await fetchUrl("/api/v1/someUrl");
     expect(fetchResponse).toBe(res);
-    delete global.fetch;
+
+    jest.restoreAllMocks();
   });
   it(`should reject with data for fetch status returns ok false`, async () => {
-    const mockFetch = sinon.fake.resolves({
-      ok: false,
-      json: () => res,
+    jest.spyOn(global, "fetch").mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockRejectedValue(res),
     });
-    // Inject mock fetch into global
-    global.fetch = mockFetch;
     try {
       await fetchUrl("/api/v1/someUrl");
     } catch (e) {
       expect(e).toBe(res);
     }
-    delete global.fetch;
+
+    jest.restoreAllMocks();
   });
 });

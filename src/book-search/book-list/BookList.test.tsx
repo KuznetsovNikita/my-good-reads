@@ -2,7 +2,6 @@ import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { BookList } from "./BookList";
 import { Book } from "../model";
-import sinon from "sinon";
 
 describe("Book list component", () => {
   const description = "JavaScript description";
@@ -55,12 +54,12 @@ describe("Book list component", () => {
   });
 
   it("Book list should fire callback on click add button", () => {
-    var callback = sinon.fake();
+    var callback = jest.fn();
     render(<BookList books={[mockMinorBook]} selectBook={callback} />);
 
     fireEvent.click(screen.getByText(/Add to wishlist/i));
 
-    expect(callback.calledOnce).toBeTruthy();
-    expect(callback.calledWith(mockMinorBook)).toBeTruthy();
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith(mockMinorBook);
   });
 });
