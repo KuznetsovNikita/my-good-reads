@@ -20,13 +20,17 @@ describe("Wishlist component", () => {
   };
 
   it("Render empty Wishlist", () => {
-    const { getByText } = render(<Wishlist myBooks={[]} />);
+    const { getByText } = render(
+      <Wishlist myBooks={[]} removeBook={() => null} />
+    );
     const titleElement = getByText(/My wishlist \(0\)/im);
     expect(titleElement).toBeInTheDocument();
   });
 
   it("Wishlist should render one book", () => {
-    const { getByText } = render(<Wishlist myBooks={[mockBook]} />);
+    const { getByText } = render(
+      <Wishlist myBooks={[mockBook]} removeBook={() => null} />
+    );
     const titleElement = getByText(/My wishlist \(1\)/im);
     expect(titleElement).toBeInTheDocument();
 
@@ -36,7 +40,7 @@ describe("Wishlist component", () => {
 
   it("Wishlist should render two books", () => {
     const { getByText, getAllByText } = render(
-      <Wishlist myBooks={[mockBook, mockBook2]} />
+      <Wishlist myBooks={[mockBook, mockBook2]} removeBook={() => null} />
     );
     const titleElement = getByText(/My wishlist \(2\)/im);
     expect(titleElement).toBeInTheDocument();

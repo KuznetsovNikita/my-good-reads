@@ -68,6 +68,19 @@ const BookSearch = () => {
     },
     [setMyBooks]
   );
+
+  const removeBook = React.useCallback(
+    (book: Book) => {
+      setMyBooks((myBooks) => {
+        if (myBooks.find((old) => old.id === book.id)) {
+          return myBooks.filter((old) => old.id !== book.id);
+        }
+        return myBooks;
+      });
+    },
+    [setMyBooks]
+  );
+
   return (
     <>
       <div className="book--container">
@@ -101,7 +114,7 @@ const BookSearch = () => {
           </div>
         </div>
         <div className="sidebar">
-          <Wishlist myBooks={myBooks} />
+          <Wishlist myBooks={myBooks} removeBook={removeBook} />
         </div>
       </div>
     </>
