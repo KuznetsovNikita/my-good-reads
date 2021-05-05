@@ -22,6 +22,7 @@ const useBooks = (bookTypeToSearch: string) => {
         }
       });
     } else {
+      setMessage("");
       setAllAvailableBooks([]);
     }
   }, [bookTypeToSearch]);
@@ -107,6 +108,7 @@ const BookSearch = () => {
             </form>
             <SearchBody
               books={books}
+              myBooks={myBooks}
               message={message}
               selectBook={selectBook}
               setDefault={setDefault}
@@ -124,12 +126,14 @@ const BookSearch = () => {
 interface SearchBodyProps {
   message: string;
   books: Book[];
+  myBooks: Book[];
   selectBook: (book: Book) => void;
   setDefault: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 const SearchBody: React.FC<SearchBodyProps> = ({
   message,
   books,
+  myBooks,
   selectBook,
   setDefault,
 }) => {
@@ -141,7 +145,7 @@ const SearchBody: React.FC<SearchBodyProps> = ({
     );
   }
   if (books.length) {
-    return <BookList books={books} selectBook={selectBook} />;
+    return <BookList books={books} myBooks={myBooks} selectBook={selectBook} />;
   }
 
   return (

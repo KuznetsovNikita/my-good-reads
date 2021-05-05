@@ -31,7 +31,7 @@ describe("Book list component", () => {
 
   it("Book list should render all major data", () => {
     const { getByText } = render(
-      <BookList books={[mockMajorBook]} selectBook={() => null} />
+      <BookList books={[mockMajorBook]} myBooks={[]} selectBook={() => null} />
     );
     const titleElement = getByText(/JavaScript 1/i);
     expect(titleElement).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("Book list component", () => {
 
   it("Book list should render with minor data", () => {
     const { getByText } = render(
-      <BookList books={[mockMinorBook]} selectBook={() => null} />
+      <BookList books={[mockMinorBook]} myBooks={[]} selectBook={() => null} />
     );
     const titleElement = getByText(/JavaScript 2/i);
     expect(titleElement).toBeInTheDocument();
@@ -55,7 +55,9 @@ describe("Book list component", () => {
 
   it("Book list should fire callback on click add button", () => {
     const callback = jest.fn();
-    render(<BookList books={[mockMinorBook]} selectBook={callback} />);
+    render(
+      <BookList books={[mockMinorBook]} myBooks={[]} selectBook={callback} />
+    );
 
     fireEvent.click(screen.getByText(/Add to wishlist/i));
 

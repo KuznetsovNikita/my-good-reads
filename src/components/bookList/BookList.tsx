@@ -4,13 +4,21 @@ import "./bookList.scss";
 
 interface BookListProps {
   books: Book[];
+  myBooks: Book[];
   selectBook: (book: Book) => void;
 }
 
-export const BookList: React.FC<BookListProps> = ({ books, selectBook }) => {
+export const BookList: React.FC<BookListProps> = ({
+  books,
+  myBooks,
+  selectBook,
+}) => {
   return (
     <div className="book-list">
       {books.map((book) => {
+        const disabled =
+          myBooks.find((myBook) => myBook.id === book.id) !== undefined;
+
         return (
           <div
             className="book-list-item"
@@ -41,7 +49,9 @@ export const BookList: React.FC<BookListProps> = ({ books, selectBook }) => {
                     book.volumeInfo.description,
                 }}
               ></p>
-              <button onClick={() => selectBook(book)}>Add to wishlist</button>
+              <button disabled={disabled} onClick={() => selectBook(book)}>
+                Add to wishlist
+              </button>
             </div>
           </div>
         );
