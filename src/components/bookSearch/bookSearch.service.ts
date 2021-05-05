@@ -1,7 +1,7 @@
 import fetchUrl from "../../shared/fetchUrl/fetchUrl";
 
 interface Response<A> {
-  items: A[];
+  items?: A[];
 }
 
 export async function getBooksByType<A>(type: string): Promise<Response<A>> {

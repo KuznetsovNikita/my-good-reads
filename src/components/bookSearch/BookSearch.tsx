@@ -8,18 +8,25 @@ import { BookList } from "../bookList/BookList";
 
 const useBooks = (bookTypeToSearch: string) => {
   const [allAvailableBooks, setAllAvailableBooks] = React.useState<Book[]>([]);
+  const [message, setMessage] = React.useState<string>("");
 
   React.useEffect(() => {
     if (bookTypeToSearch) {
+      setMessage("Loading...");
       getBooksByType<Book>(bookTypeToSearch).then((allBooks) => {
-        setAllAvailableBooks(allBooks.items);
+        if (allBooks.items) {
+          setMessage("");
+          setAllAvailableBooks(allBooks.items);
+        } else {
+          setMessage("No results find...");
+        }
       });
     } else {
       setAllAvailableBooks([]);
     }
   }, [bookTypeToSearch]);
 
-  return allAvailableBooks;
+  return [allAvailableBooks, message] as const;
 };
 
 const BookSearch = () => {
@@ -27,7 +34,7 @@ const BookSearch = () => {
   const [bookTypeToSearch, updateBookTypeToSearch] = React.useState("");
   const [myBooks, setMyBooks] = React.useState<Book[]>([]);
 
-  const books = useBooks(bookTypeToSearch);
+  const [books, message] = useBooks(bookTypeToSearch);
 
   const onChange = React.useMemo(() => {
     const debouncedUpdateBookTypeToSearch = debounce(
@@ -98,19 +105,12 @@ const BookSearch = () => {
                 onChange={onChange}
               />
             </form>
-            {(books.length && (
-              <BookList books={books} selectBook={selectBook} />
-            )) ||
-              (!bookType && (
-                <div className="empty">
-                  <p>
-                    Try searching for a topic, for example
-                    <a href="#/" onClick={setDefault}>
-                      "Javascript"
-                    </a>
-                  </p>
-                </div>
-              ))}
+            <SearchBody
+              books={books}
+              message={message}
+              selectBook={selectBook}
+              setDefault={setDefault}
+            />
           </div>
         </div>
         <div className="sidebar">
@@ -118,6 +118,41 @@ const BookSearch = () => {
         </div>
       </div>
     </>
+  );
+};
+
+interface SearchBodyProps {
+  message: string;
+  books: Book[];
+  selectBook: (book: Book) => void;
+  setDefault: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+const SearchBody: React.FC<SearchBodyProps> = ({
+  message,
+  books,
+  selectBook,
+  setDefault,
+}) => {
+  if (message) {
+    return (
+      <div className="empty">
+        <p>{message}</p>
+      </div>
+    );
+  }
+  if (books.length) {
+    return <BookList books={books} selectBook={selectBook} />;
+  }
+
+  return (
+    <div className="empty">
+      <p>
+        Try searching for a topic, for example
+        <a href="#/" onClick={setDefault}>
+          "Javascript"
+        </a>
+      </p>
+    </div>
   );
 };
 
