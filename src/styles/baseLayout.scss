@@ -1,3 +1,18 @@
+@import "./variables.scss";
+z body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -32,33 +47,4 @@ a {
   h1 {
     flex: 1;
   }
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: $blue-accent;
-  color: $white;
-  padding: $spacing-3xs $spacing-xs;
-
-  button {
-    padding: 0 $spacing-xs;
-  }
-}
-
-.header--content {
-  display: flex;
-  height: 10vh;
-  > * {
-    display: flex;
-    align-items: center;
-  }
-}
-
-main {
-  padding: $spacing-xs $spacing-xxs;
-  min-width: 300px;
-  max-width: 1250px;
-  margin: 0 auto;
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import { Book } from "../model";
+import { Book } from "../bookSearch/model";
+import "./bookList.scss";
 
 interface BookListProps {
   books: Book[];

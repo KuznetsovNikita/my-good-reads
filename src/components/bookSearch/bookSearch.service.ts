@@ -1,4 +1,4 @@
-import fetchUrl from "./../shared/fetchUrl/fetchUrl";
+import fetchUrl from "../../shared/fetchUrl/fetchUrl";
 
 interface Response<A> {
   items: A[];

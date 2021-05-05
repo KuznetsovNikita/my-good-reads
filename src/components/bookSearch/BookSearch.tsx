@@ -1,9 +1,10 @@
 import React from "react";
-import { getBooksByType } from "./book-search.service";
+import { getBooksByType } from "./bookSearch.service";
+import "./bookSearch.scss";
 import { Book } from "./model";
 import { debounce } from "debounce";
-import { Wishlist } from "./wishlist/Wishlist";
-import { BookList } from "./book-list/BookList";
+import { Wishlist } from "../wishlist/Wishlist";
+import { BookList } from "../bookList/BookList";
 
 const useBooks = (bookTypeToSearch: string) => {
   const [allAvailableBooks, setAllAvailableBooks] = React.useState<Book[]>([]);

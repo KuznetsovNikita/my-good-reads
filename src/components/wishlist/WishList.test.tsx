@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Book } from "../model";
+import { Book } from "../bookSearch/model";
 import { Wishlist } from "./Wishlist";
 
 describe("Wishlist component", () => {

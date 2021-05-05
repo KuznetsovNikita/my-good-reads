@@ -1,0 +1,30 @@
+@import "/src/styles/variables.scss";
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: $blue-accent;
+  color: $white;
+  padding: $spacing-3xs $spacing-xs;
+
+  button {
+    padding: 0 $spacing-xs;
+  }
+}
+
+.header--content {
+  display: flex;
+  height: 10vh;
+  > * {
+    display: flex;
+    align-items: center;
+  }
+}
+
+main {
+  padding: $spacing-xs $spacing-xxs;
+  min-width: 300px;
+  max-width: 1250px;
+  margin: 0 auto;
+}

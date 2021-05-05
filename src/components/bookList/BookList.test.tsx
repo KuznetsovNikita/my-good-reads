@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { BookList } from "./BookList";
-import { Book } from "../model";
+import { Book } from "../bookSearch/model";
 
 describe("Book list component", () => {
   const description = "JavaScript description";
